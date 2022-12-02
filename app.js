@@ -1,10 +1,20 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 
-app.get("/",(req,res) => {
-    res.send("Home Page");
-})
+require("dotenv/config");
+const product = require("./routes/product");
 
+const api = process.env.API_URL
+
+// ---------- Middleware ----------
+
+// Make fronted send json data to this API
+app.use(bodyParser.json());
+
+// Use this middleare for "localhost:3000/api/v1/product"
+app.use(`${process.env.API_URL}/product`,product)
+    
 app.listen(3000, () => {
-    console.log("Its Working");
-});
+    console.log(api);
+})
