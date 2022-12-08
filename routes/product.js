@@ -4,10 +4,10 @@ const {getProducts,createProduct} = require("./../controller/product");
 
 // ---------- Routes ----------
 
-// get all the products
+// get all the products route
 router.route("/").get(getProducts);
 
-// create a product
+// create a product route
 router.route("/").post(createProduct);
 
 module.exports = router

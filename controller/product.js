@@ -1,5 +1,7 @@
 const {db} = require("./../db/connect");
 
+
+// Get all the Products
 const getProducts = (req,res) => {
     const sql = `SELECT * FROM product`;
     console.log(sql)
@@ -9,6 +11,7 @@ const getProducts = (req,res) => {
     })
 }
 
+// Create a new Product
 const createProduct = (req,res) => {
     const {title, description, image} = req.body
     const sql = `INSERT INTO product (title,description,image) VALUES ('${title}','${description}','${image}')`;

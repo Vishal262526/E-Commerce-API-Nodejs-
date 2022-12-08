@@ -41,4 +41,28 @@ const createCategory = (req, res, next) => {
     })
 }
 
-module.exports = { getCategoires, createCategory };
+const deleteCategory = (req,res) => {
+
+    // get the category id from the fronted
+    const id = req.params.id
+
+    const sql = `SELECT id FROM category WHERE id = ${id}`;
+    // Run the query 
+    db.query(sql, (err,result) => {
+        if (err) throw err;
+        if (result.length > 0){
+            const delete_category_query = `DELETE FROM category WHERE id = ${id}`;
+            db.query(delete_category_query, (err,rresult) => {
+                if (err) throw err;
+
+                res.status(200).json({success:true,msg:"Category Deleted"});
+            })
+        }
+        else{
+            return res.status(404).json({sucess:false,msg:"Category not Found"});
+        }
+    })
+
+}
+
+module.exports = { getCategoires, createCategory, deleteCategory,  };
