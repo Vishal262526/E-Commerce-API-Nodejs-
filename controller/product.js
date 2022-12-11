@@ -3,11 +3,12 @@ const {db} = require("./../db/connect");
 
 // Get all the Products
 const getProducts = (req,res) => {
-    const sql = `SELECT * FROM product`;
+    const sql = `SELECT * FROM products`;
     console.log(sql)
     db.query(sql, (err, result) => {
         if (err) throw err;
-        res.status(200).json(result);
+        result.length > 0 ? res.status(200).json(result): res.status(404).json({success:false,msg:"There are no Products Found"});
+        
     })
 }
 

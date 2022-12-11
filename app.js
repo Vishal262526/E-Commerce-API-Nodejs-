@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+
+
 // Routes imports
 const product = require("./routes/product");
 const category = require("./routes/category");
@@ -11,13 +13,14 @@ const category = require("./routes/category");
 require("dotenv/config");
 
 
+
 const api = process.env.API_URL
 
 // ---------- Middleware ----------
 app.use(bodyParser.json()); // for parsing JSON data
 
 // ---------- Routes -----------
-app.use(`${process.env.API_URL}/product`,product);
+app.use(`${process.env.API_URL}/products`,product);
 app.use(`${process.env.API_URL}/category`,category);
     
 

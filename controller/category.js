@@ -44,7 +44,7 @@ const createCategory = (req, res, next) => {
 const deleteCategory = (req,res) => {
 
     // get the category id from the fronted
-    const id = req.params.id
+    const {id} = req.body;
 
     const sql = `SELECT id FROM category WHERE id = ${id}`;
     // Run the query 
