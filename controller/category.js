@@ -41,6 +41,7 @@ const createCategory = (req, res, next) => {
     })
 }
 
+// Delete a Category
 const deleteCategory = (req,res) => {
 
     // get the category id from the fronted
@@ -65,6 +66,7 @@ const deleteCategory = (req,res) => {
 
 }
 
+// Update a Category
 const updateCategory = (req,res) => {
     const id = req.params.id;
     const {name, color, icon} = req.body;
