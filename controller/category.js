@@ -65,4 +65,23 @@ const deleteCategory = (req,res) => {
 
 }
 
-module.exports = { getCategoires, createCategory, deleteCategory,  };
+const updateCategory = (req,res) => {
+    const id = req.params.id;
+    const {name, color, icon} = req.body;
+    const sql = `SELECT * FROM category WHERE id = ${id}`;
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        else if(result.length > 0){
+            const update_category_query = `UPDATE category SET name = '${name}', color = '${color}', icon = '${icon}' WHERE id = ${id}`;
+            db.query(update_category_query, (err,result) => {
+                if (err) throw err;
+                res.status(200).json({success:true, msg:"Category Updated"});
+            })
+        }
+        else{
+            res.status(404).json({success:false,msg:"Category Not Found"});
+        }
+    })
+}
+
+module.exports = { getCategoires, createCategory, deleteCategory, updateCategory };
