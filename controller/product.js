@@ -24,4 +24,28 @@ const createProduct = (req,res) => {
 
 }
 
+// Update a Product
+const updateProduct = (req,res) => {
+    const {title, description, image} = req.body
+    const sql = `UPDATE product SET title = '${title}',description = '${description}' ,image = '${image}'`;
+    console.log(sql)
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send({success:true, msg:"Product Successfully Updated"});
+    })
+
+}
+
+// Delte a Product
+const DeleteProduct = (req,res) => {
+    const {id} = req.params;
+    const sql = `DELETE FROM product WHERE id = ${id}`;
+    console.log(sql)
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send({success:true, msg:"Product Successfully Deleted"});
+    })
+
+}
+
 module.exports = {getProducts, createProduct};
